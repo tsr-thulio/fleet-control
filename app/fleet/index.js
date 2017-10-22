@@ -4,5 +4,4 @@ angular
   .module(moduleName, [])
   .controller('fleetController', require('./controllers/fleetController'));
 
-  module.exports = moduleName;
-  
+module.exports = moduleName;

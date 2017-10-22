@@ -4,5 +4,4 @@ angular
   .module(moduleName, [])
   .controller('AppController', require('./controllers/AppController'));
 
-  module.exports = moduleName;
-  
+module.exports = moduleName;
