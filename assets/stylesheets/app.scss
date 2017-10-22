@@ -1,0 +1,8 @@
+@charset 'UTF-8';
+
+/* Third party */
+@import 'angular-material/angular-material.scss';
+
+
+/* Importing custom css for each page */
+@import './pages/pages.scss';
