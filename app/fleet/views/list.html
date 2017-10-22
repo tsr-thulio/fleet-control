@@ -1,3 +1,20 @@
 <div class="container">
-  Here goes content html
+  <div class="crud-actions-container" layout="row" flex layout-align="space-between center">
+    <div class="buttons-container" layout="row" flex="40">
+      <md-input-container class="md-block">
+        <md-button ng-click="fleet.addCar()" class="md-raised md-accent">Novo Carro</md-button>
+      </md-input-container>    
+      <md-input-container class="md-block">
+        <md-button ng-click="fleet.removeCar()" class="md-raised md-warn">Excluir Carro</md-button>
+      </md-input-container>    
+    </div>
+    <div class="search-container" flex="30">
+      <form ng-submit="fleet.search()">
+        <md-input-container md-no-float class="md-block">
+          <input ng-model="fleet.searchText" type="text" placeholder="Pesquisar">
+          <md-icon>search</md-icon>
+        </md-input-container>
+      </form>
+    </div>
+  </div>
 </div>

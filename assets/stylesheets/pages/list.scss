@@ -1,3 +1,9 @@
 div.container{
-  margin: 25px;
+  margin: 0px 40px;
+}
+
+.buttons-container {
+  .md-button {
+    min-width: 150px !important;
+  }
 }
