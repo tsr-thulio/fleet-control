@@ -5,3 +5,4 @@ angular
   .controller('AppController', require('./controllers/AppController'));
 
   module.exports = moduleName;
+  

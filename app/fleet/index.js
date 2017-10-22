@@ -5,3 +5,4 @@ angular
   .controller('fleetController', require('./controllers/fleetController'));
 
   module.exports = moduleName;
+  
