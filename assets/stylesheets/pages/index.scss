@@ -1,0 +1,14 @@
+.toolbar-title {
+  img {
+    width: 30px;
+    height: 30px;
+  }
+  span {
+    vertical-align: middle;
+    font-weight: bold;
+  }
+}
+
+md-content.md-default-theme, md-content {
+  background-color: rgba(241,244,249,1) !important;
+}
