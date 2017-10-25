@@ -1,5 +1,4 @@
 require('angular');
-// require('angular-ui-bootstrap');
 
 angular.module('Fleet', [
   require('angular-aria'),
@@ -8,7 +7,6 @@ angular.module('Fleet', [
   require('angular-material'),
   require('angular-sanitize'),
   require('angular-material-data-table'),
-  // 'ui.bootstrap',
   require('@uirouter/angularjs').default,
   require('./core'),
   require('./fleet')
