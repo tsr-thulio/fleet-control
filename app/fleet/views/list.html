@@ -17,4 +17,31 @@
       </form>
     </div>
   </div>
+
+  <md-table-container>
+  <table md-table md-row-select multiple ng-model="fleet.selectedVehicles" md-progress="promise">
+    <thead md-head>
+      <tr md-row>
+        <th md-column><span>Placa</span></th>
+        <th md-column>Modelo</th>
+        <th md-column>Marca</th>
+        <th md-column>Foto</th>
+        <th md-column>Combustível</th>
+        <th md-column md-numeric>Valor</th>
+      </tr>
+    </thead>
+    <tbody md-body>
+      <tr md-row md-select="vehicle" md-select-id="name" ng-repeat="vehicle in fleet.fleet">
+        <td md-cell>{{vehicle.placa}}</td>
+        <td md-cell>{{vehicle.modelo}}</td>
+        <td md-cell>{{vehicle.marca}}</td>
+        <td ng-if="vehicle.imagem" md-cell>Imagem</td>
+        <td ng-if="!vehicle.imagem" md-cell>Sem foto</td>
+        <td md-cell>{{vehicle.combustivel}}</td>
+        <td md-cell>{{vehicle.valor}}</td>
+      </tr>
+    </tbody>
+  </table>
+</md-table-container>
+
 </div>
