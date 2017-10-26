@@ -20,9 +20,8 @@ module.exports = function(FleetService, $mdDialog) {
      */
     init: function (callback) {
       $ctrl.fleet = FleetService.getFleetByPage(1);
-      $ctrl.bla = true;
+      $ctrl.totalItems = FleetService.getTotalItems();
       $ctrl.selectedVehicles = [];
-
       callback();
     },
 
@@ -30,9 +29,11 @@ module.exports = function(FleetService, $mdDialog) {
      * Add EventListeners method
      */
     addEventListeners: function () {
+      $ctrl.paginate = $this.paginate.bind($this);
       $ctrl.addCar = $this.addCar.bind($this);
       $ctrl.removeCar = $this.removeCar.bind($this);
       $ctrl.search = $this.search.bind($this);
+      $ctrl.editVehicle = $this.editVehicle.bind($this);
     },
 
     /**
@@ -48,22 +49,45 @@ module.exports = function(FleetService, $mdDialog) {
     removeCar: function() {
       FleetService.removeVehicles($ctrl.selectedVehicles);
       $ctrl.fleet = FleetService.getFleetByPage(1);
+      $ctrl.totalItems = FleetService.getTotalItems();
     },
 
     /**
      * Add search vehicle
      */
     search: function() {
-      alert('Search something');
+      $ctrl.fleet = FleetService.searchVehicles($ctrl.searchText);
     },
 
-    openVehicleModal: function() {
+    /**
+     * Execute pagination behavior
+     */
+    paginate: function() {
+      $ctrl.fleet = FleetService.getFleetByPage($ctrl.currentPage);
+    },
+
+    /**
+     * Edit specific vehicle
+     */
+    editVehicle: function(vehicleId) {
+      console.log(vehicleId);
+      $this.openVehicleModal(vehicleId);
+    },
+
+    openVehicleModal: function(itemId) {
+      $ctrl.searchText = null;
       $mdDialog.show({
         controller: 'vehicleModalController as vehicle',
         template: require('../views/VehicleModal.html'),
         clickOutsideToClose: false,
         escapeToClose: false,
-        parent: angular.element(document.body)
+        parent: angular.element(document.body),
+        locals: {
+          itemId: itemId
+        }
+      }).finally(function() {
+        $ctrl.fleet = FleetService.getFleetByPage(1);
+        $ctrl.totalItems = FleetService.getTotalItems();
       });
     }
   }

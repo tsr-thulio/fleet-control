@@ -11,6 +11,7 @@ module.exports = function () {
     this.valor = null;
 
     if (params) {
+      this.id = params.id;
       this.combustivel = params.combustivel;
       this.imagem = params.imagem;
       this.marca = params.marca;

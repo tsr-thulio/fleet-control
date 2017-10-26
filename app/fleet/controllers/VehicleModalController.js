@@ -1,4 +1,4 @@
-module.exports = function($mdDialog, Vehicle, FleetService) {
+module.exports = function($mdDialog, Vehicle, FleetService, itemId) {
 
   'ngInject';
 
@@ -19,8 +19,13 @@ module.exports = function($mdDialog, Vehicle, FleetService) {
      * @param {Function} - callbalck function to be executed
      */
     init: function (callback) {
-      $ctrl.model = new Vehicle();
-      $ctrl.modalTitle = 'Adicionar Veículo'
+      if (itemId !== null && itemId !== undefined) {
+        $ctrl.model = new Vehicle(FleetService.getVehicleById(itemId));
+        $ctrl.modalTitle = 'Editar Veículo'
+      } else {
+        $ctrl.model = new Vehicle();
+        $ctrl.modalTitle = 'Adicionar Veículo'
+      }
       callback();
     },
 
@@ -37,7 +42,7 @@ module.exports = function($mdDialog, Vehicle, FleetService) {
      */
     saveVehicle: function() {
       if ($ctrl.model.validate()) {
-        FleetService.addVehicle($ctrl.model);
+        FleetService.upsertVehicle($ctrl.model);
         $mdDialog.cancel();
       }
     },

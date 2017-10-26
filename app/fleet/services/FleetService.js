@@ -35,13 +35,32 @@ module.exports = function() {
   this.idToBeUsed = 3;
 
   this.getFleetByPage = function(page) {
-    return this.allVehicles;
+    var indexStart = 5 * (page - 1);
+    var indexEnd = indexStart + 5;
+    return this.allVehicles.slice(indexStart, indexEnd);
   };
 
-  this.addVehicle = function(vehicle) {
-    vehicle.id = angular.copy(this.idToBeUsed);
-    this.idToBeUsed += 1;
-    this.allVehicles.push(vehicle);
+  this.upsertVehicle = function(vehicle) {
+    if (vehicle.id !== null && vehicle.id !== undefined) {
+      update(vehicle, this);
+    } else {
+      save(vehicle, this);
+    }
+  }
+
+  update = function(vehicle, scope) {
+    scope.allVehicles = scope.allVehicles.map(function(item) {
+      if (item.id === vehicle.id) {
+        item = vehicle;
+      }
+      return item;
+    })
+  }
+
+  save = function(vehicle, scope) {
+    vehicle.id = angular.copy(scope.idToBeUsed);
+    scope.idToBeUsed += 1;
+    scope.allVehicles.push(vehicle);
   };
 
   this.removeVehicles = function(vehicles) {
@@ -55,5 +74,28 @@ module.exports = function() {
     });
 
     this.allVehicles = filteredList;
+  }
+
+  this.searchVehicles = function(searchText) {
+    searchText = searchText.toLowerCase();
+    var filteredResults = this.allVehicles.filter(function(item) {
+      if ( (item.combustivel !== null && item.combustivel.toLowerCase().indexOf(searchText) != -1) 
+            || item.marca.toLowerCase().indexOf(searchText) != -1) {
+        return item;
+      }
+    });
+
+    return filteredResults;
+  }
+
+  this.getTotalItems = function() {
+    return this.allVehicles.length;
+  }
+
+  this.getVehicleById = function(vehicleId) {
+    var vehicle =  this.allVehicles.find(function(vehicle) {
+      return vehicle.id === vehicleId;
+    });
+    return vehicle;
   }
 };

@@ -3,6 +3,55 @@
 /* Third party */
 @import 'angular-material/angular-material.scss';
 @import 'angular-material-data-table/dist/md-data-table.css';
+@import 'angular-ui-bootstrap/dist/ui-bootstrap-csp.css';
 
 /* Importing custom css for each page */
 @import './pages/pages.scss';
+
+/* angular-material-data-table CSS overrides */
+table.md-table td.md-cell {
+  border-top: none;
+}
+
+md-table-container {
+  border: 1px solid #c9d3dd;
+  border-radius: 5px;
+  .md-row {
+    border-bottom: 1px solid #c9d3dd;
+  }
+  thead {
+    background-color: rgba(248, 250, 253, 1);
+  }
+  tbody .md-row {
+    cursor: pointer;
+    background-color: #ffffff;
+  }
+  table.md-table.md-row-select tbody.md-body > tr.md-row:not([disabled]):hover {
+    background-color: rgba(216, 233, 251, 1) !important;
+  }
+  table.md-table.md-row-select tbody.md-body > tr.md-row.md-selected {
+    background-color: rgba(216, 233, 251, 1);
+  }
+}
+
+/* Angular UI Bootstrap pagination CSS overrides */
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #3a5c7b !important;
+    background-color: rgb(216, 233, 251) !important;
+    border-color: rgb(139, 200, 247) !important;
+}
+
+.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
+    color: #3a5c7b !important;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+    background-color: rgb(255, 250, 235) !important;
+    border-color: #c9d3dd !important;
+}
+
+.pagination-prev, .pagination-next {
+  font-weight: bold !important;
+  font-family: serif !important;
+}

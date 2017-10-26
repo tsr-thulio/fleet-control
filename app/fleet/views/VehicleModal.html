@@ -1,9 +1,9 @@
 <md-dialog flex="60">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2>{{ vehicle.modalTitle }}</h2>
+      <h2 id="addOrEditLabel">{{ vehicle.modalTitle }}</h2>
       <span flex></span>
-      <md-button class="md-icon-button" ng-click="vehicle.cancel()">
+      <md-button id="closeModalButton" class="md-icon-button" ng-click="vehicle.cancel()">
         <md-icon aria-label="Close dialog">close</md-icon>
       </md-button>
     </div>
@@ -13,39 +13,39 @@
     <div>
       <div class="modal-form-container" layout="row" layout-wrap>
         <md-input-container class="form-left-side" flex="50" class="md-block">
-          <input name="placa" ng-model="vehicle.model.placa" ng-required="true" type="text" placeholder="Placa">
+          <input id="inputPlaca" name="placa" ng-model="vehicle.model.placa" ng-required="true" type="text" placeholder="Placa">
           <div ng-messages="vehicleForm.placa.$error" role="alert">
             <div ng-message="required">O campo Placa é obrigatório</div>
           </div>
         </md-input-container>
         <md-input-container flex="50" class="md-block">
-          <input name="modelo" ng-model="vehicle.model.modelo" ng-required="true" type="text" placeholder="Modelo">
+          <input id="inputModelo" name="modelo" ng-model="vehicle.model.modelo" ng-required="true" type="text" placeholder="Modelo">
           <div ng-messages="vehicleForm.modelo.$error" role="alert">
             <div ng-message="required">O campo Modelo é obrigatório</div>
           </div>
         </md-input-container>
         <md-input-container class="form-left-side" flex="50" class="md-block">
-          <input name="marca" ng-model="vehicle.model.marca" ng-required="true" type="text" placeholder="Marca">
+          <input id="inputMarca" name="marca" ng-model="vehicle.model.marca" ng-required="true" type="text" placeholder="Marca">
           <div ng-messages="vehicleForm.marca.$error" role="alert">
             <div ng-message="required">O campo Marca é obrigatório</div>
           </div>
         </md-input-container>
         <md-input-container flex="50" class="md-block">
-          <input ng-model="vehicle.model.imagem" type="text" placeholder="Imagem">
+          <input id="inputImagem" ng-model="vehicle.model.imagem" type="text" placeholder="Imagem">
         </md-input-container>
         <md-input-container class="form-left-side" flex="50" class="md-block">
-          <input ng-model="vehicle.model.combustivel" type="text" placeholder="Combustível">
+          <input id="inputCombustivel" ng-model="vehicle.model.combustivel" type="text" placeholder="Combustível">
         </md-input-container>
         <md-input-container flex="50" class="md-block">
-          <input ng-model="vehicle.model.valor" type="text" placeholder="Valor">
+          <input id="inputValor" ng-model="vehicle.model.valor" type="text" placeholder="Valor">
         </md-input-container>
       </div>
     </div>
     <md-divider></md-divider>
 
     <md-dialog-actions layout="row">
-      <md-button type="button" ng-click="vehicle.cancel()" class="md-warn">Cancelar</md-button>
-      <md-button type="submit" class="md-primary md-raised">Confirmar</md-button>
+      <md-button id="cancelAddButton" type="button" ng-click="vehicle.cancel()" class="md-warn">Cancelar</md-button>
+      <md-button id="confirmAddButton" type="submit" class="md-primary md-raised">Confirmar</md-button>
     </md-dialog-actions>
   </form>
 

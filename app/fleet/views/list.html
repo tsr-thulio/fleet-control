@@ -1,20 +1,18 @@
-<div class="container">
+<div class="fleet-container">
   <div class="crud-actions-container" layout="row" flex layout-align="space-between center">
     <div class="buttons-container" layout="row" flex="40">
       <md-input-container class="md-block">
-        <md-button ng-click="fleet.addCar()" class="md-raised md-accent">Novo Carro</md-button>
+        <md-button id="addVehicleButton" ng-click="fleet.addCar()" class="md-raised md-accent">Novo Carro</md-button>
       </md-input-container>    
       <md-input-container class="md-block">
         <md-button ng-click="fleet.removeCar()" class="md-raised md-warn">Excluir Carro</md-button>
       </md-input-container>    
     </div>
-    <div class="search-container" flex="30">
-      <form ng-submit="fleet.search()">
-        <md-input-container md-no-float class="md-block">
-          <input ng-model="fleet.searchText" type="text" placeholder="Pesquisar">
-          <md-icon>search</md-icon>
-        </md-input-container>
-      </form>
+    <div class="search-container" flex="20" layout="row">
+        <input id="searchInput" placeholder="Pesquisar" type="text" class="form-control" ng-model="fleet.searchText" ng-change="fleet.search()" ng-model-options="{debounce: 500}"/>
+        <span class="input-group-btn">
+          <button id="searchVehicleButton" type="button" class="btn btn-default" ng-click="fleet.search()"><i class="glyphicon glyphicon-search"></i></button>
+        </span>
     </div>
   </div>
 
@@ -31,7 +29,7 @@
       </tr>
     </thead>
     <tbody md-body>
-      <tr md-row md-select="vehicle" md-select-id="name" ng-repeat="vehicle in fleet.fleet">
+      <tr id="{{'vehicleRow' + $index}}" md-row md-select="vehicle" md-select-id="name" ng-click="fleet.editVehicle(vehicle.id)" ng-repeat="vehicle in fleet.fleet">
         <td md-cell>{{vehicle.placa}}</td>
         <td md-cell>{{vehicle.modelo}}</td>
         <td md-cell>{{vehicle.marca}}</td>
@@ -43,5 +41,9 @@
     </tbody>
   </table>
 </md-table-container>
+
+<div layout="row" layout-align="center center">
+  <ul id="paginationElement" uib-pagination total-items="fleet.totalItems" next-text=">>" previous-text="<<" max-size="5" items-per-page="5" ng-model="fleet.currentPage" ng-change="fleet.paginate()"></ul>
+</div>
 
 </div>
