@@ -29,14 +29,14 @@
       </tr>
     </thead>
     <tbody md-body>
-      <tr id="{{'vehicleRow' + $index}}" md-row md-select="vehicle" md-select-id="name" ng-click="fleet.editVehicle(vehicle.id)" ng-repeat="vehicle in fleet.fleet">
-        <td md-cell>{{vehicle.placa}}</td>
-        <td md-cell>{{vehicle.modelo}}</td>
-        <td md-cell>{{vehicle.marca}}</td>
-        <td ng-if="vehicle.imagem" md-cell>Imagem</td>
-        <td ng-if="!vehicle.imagem" md-cell>Sem foto</td>
-        <td md-cell>{{vehicle.combustivel}}</td>
-        <td md-cell>{{vehicle.valor}}</td>
+      <tr id="{{'vehicleRow' + $index}}" md-row md-select="vehicle" md-select-id="name" ng-repeat="vehicle in fleet.fleet">
+        <td ng-click="fleet.editVehicle(vehicle.id)" md-cell>{{vehicle.placa}}</td>
+        <td ng-click="fleet.editVehicle(vehicle.id)" md-cell>{{vehicle.modelo}}</td>
+        <td ng-click="fleet.editVehicle(vehicle.id)" md-cell>{{vehicle.marca}}</td>
+        <td ng-click="fleet.editVehicle(vehicle.id, $event)" ng-if="vehicle.imagem" md-cell><a id="vehicle-img" href="{{vehicle.imagem}}" target="_blank">Imagem</a></td>
+        <td ng-click="fleet.editVehicle(vehicle.id)" ng-if="!vehicle.imagem" md-cell>Sem foto</td>
+        <td ng-click="fleet.editVehicle(vehicle.id)" md-cell>{{vehicle.combustivel}}</td>
+        <td ng-click="fleet.editVehicle(vehicle.id)" md-cell>{{vehicle.valor | currency: ''}}</td>
       </tr>
     </tbody>
   </table>

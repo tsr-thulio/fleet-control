@@ -10,7 +10,7 @@ module.exports = function() {
       marca : 'Volkswagem',
       modelo : 'Gol',
       placa : 'FFF-5498',
-      valor : '20000'
+      valor : 20000
     },
     {
       id: 1,
@@ -19,7 +19,7 @@ module.exports = function() {
       marca : 'Volkswagem',
       modelo : 'Fox',
       placa : 'FOX-4125',
-      valor : '20000'
+      valor : 20000
     },
     {
       id: 2,
@@ -28,7 +28,7 @@ module.exports = function() {
       marca : 'Volkswagen',
       modelo : 'Fusca',
       placa : 'PAI-4121',
-      valor : '20000'
+      valor : 20000
     }
   ];
 
@@ -98,4 +98,8 @@ module.exports = function() {
     });
     return vehicle;
   }
+
+  this.getFuelList = function() {
+    return ['Gasolina', 'Alcool', 'Flex', 'Diesel', 'Eletrico'];
+  };
 };

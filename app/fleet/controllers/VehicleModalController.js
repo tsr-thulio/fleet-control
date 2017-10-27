@@ -1,4 +1,4 @@
-module.exports = function($mdDialog, Vehicle, FleetService, itemId) {
+module.exports = function($mdDialog, Vehicle, FleetService, itemId, $scope) {
 
   'ngInject';
 
@@ -19,6 +19,7 @@ module.exports = function($mdDialog, Vehicle, FleetService, itemId) {
      * @param {Function} - callbalck function to be executed
      */
     init: function (callback) {
+      $ctrl.fuelList = FleetService.getFuelList();
       if (itemId !== null && itemId !== undefined) {
         $ctrl.model = new Vehicle(FleetService.getVehicleById(itemId));
         $ctrl.modalTitle = 'Editar Veículo'
@@ -35,13 +36,14 @@ module.exports = function($mdDialog, Vehicle, FleetService, itemId) {
     addEventListeners: function () {
       $ctrl.saveVehicle = $this.saveVehicle.bind($this);
       $ctrl.cancel = $this.cancel.bind($this);
+      $ctrl.selectFuel = $this.selectFuel.bind($this);
     },
 
     /**
      * Save the vehicle filled in form
      */
     saveVehicle: function() {
-      if ($ctrl.model.validate()) {
+      if ($ctrl.model.validate() && !$scope.vehicleForm.$invalid) {
         FleetService.upsertVehicle($ctrl.model);
         $mdDialog.cancel();
       }
@@ -53,6 +55,15 @@ module.exports = function($mdDialog, Vehicle, FleetService, itemId) {
     cancel: function() {
       $mdDialog.cancel();
     },
+
+    /**
+     * Fuel select action
+     */
+    selectFuel: function() {
+      if ($ctrl.model.combustivel === '- Selecione -') {
+        $ctrl.model.combustivel = null;
+      }
+    }
 
   }
 

@@ -3,9 +3,31 @@
   .form-left-side {
     padding-right: 15px;
   }
+  md-input-container {
+    margin-bottom: 5px
+  }
+  .md-title {
+    margin-top: 5px
+  }
 }
+
 md-dialog-actions {
   .md-warn {
     margin-right: 25px !important;
   }
 }
+
+.img-container {
+  border: 3px black;
+  border-top-style: dotted;
+  border-right-style: solid;
+  border-bottom-style: dotted;
+  border-left-style: solid;
+  margin: 25px 100px;
+  min-height: 100px;
+  img {
+    max-height: 200px;
+  }
+}
+
+

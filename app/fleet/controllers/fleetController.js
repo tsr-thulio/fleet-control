@@ -48,7 +48,7 @@ module.exports = function(FleetService, $mdDialog) {
      */
     removeCar: function() {
       FleetService.removeVehicles($ctrl.selectedVehicles);
-      $ctrl.fleet = FleetService.getFleetByPage(1);
+      $ctrl.fleet = FleetService.getFleetByPage($ctrl.currentPage || 1);
       $ctrl.totalItems = FleetService.getTotalItems();
     },
 
@@ -63,15 +63,16 @@ module.exports = function(FleetService, $mdDialog) {
      * Execute pagination behavior
      */
     paginate: function() {
-      $ctrl.fleet = FleetService.getFleetByPage($ctrl.currentPage);
+      $ctrl.fleet = FleetService.getFleetByPage($ctrl.currentPage || 1);
     },
 
     /**
      * Edit specific vehicle
      */
-    editVehicle: function(vehicleId) {
-      console.log(vehicleId);
-      $this.openVehicleModal(vehicleId);
+    editVehicle: function(vehicleId, event) {
+      if (!event || event.srcElement.id !== 'vehicle-img') {
+        $this.openVehicleModal(vehicleId);
+      }
     },
 
     openVehicleModal: function(itemId) {
@@ -86,7 +87,7 @@ module.exports = function(FleetService, $mdDialog) {
           itemId: itemId
         }
       }).finally(function() {
-        $ctrl.fleet = FleetService.getFleetByPage(1);
+        $ctrl.fleet = FleetService.getFleetByPage($ctrl.currentPage || 1);
         $ctrl.totalItems = FleetService.getTotalItems();
       });
     }
