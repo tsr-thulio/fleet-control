@@ -1,4 +1,4 @@
-module.exports = function(FleetService, $mdDialog) {
+module.exports = function(FleetService, $mdDialog, ToastFactory) {
 
   'ngInject';
 
@@ -47,9 +47,19 @@ module.exports = function(FleetService, $mdDialog) {
      * Remove vehicle
      */
     removeCar: function() {
-      FleetService.removeVehicles($ctrl.selectedVehicles);
-      $ctrl.fleet = FleetService.getFleetByPage($ctrl.currentPage || 1);
-      $ctrl.totalItems = FleetService.getTotalItems();
+      if ($ctrl.selectedVehicles.length) {
+        FleetService.removeVehicles($ctrl.selectedVehicles);
+        $ctrl.fleet = FleetService.getFleetByPage($ctrl.currentPage || 1);
+        $ctrl.totalItems = FleetService.getTotalItems();
+        var toastText = 'Veículo excluído!';
+
+        if ($ctrl.selectedVehicles.length > 1) {
+          var toastText = 'Veículos excluídos!';
+        }
+
+        $ctrl.selectedVehicles = [];
+        new ToastFactory('bottom left', 3000, toastText).show();
+      }
     },
 
     /**

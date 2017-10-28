@@ -1,4 +1,4 @@
-module.exports = function($mdDialog, Vehicle, FleetService, itemId, $scope) {
+module.exports = function($mdDialog, Vehicle, FleetService, itemId, $scope, ToastFactory) {
 
   'ngInject';
 
@@ -23,9 +23,11 @@ module.exports = function($mdDialog, Vehicle, FleetService, itemId, $scope) {
       if (itemId !== null && itemId !== undefined) {
         $ctrl.model = new Vehicle(FleetService.getVehicleById(itemId));
         $ctrl.modalTitle = 'Editar Veículo'
+        $this.toast = new ToastFactory('bottom left', 3000, 'Veículo alterado com sucesso!');
       } else {
         $ctrl.model = new Vehicle();
         $ctrl.modalTitle = 'Adicionar Veículo'
+        $this.toast = new ToastFactory('bottom left', 3000, 'Veículo criado com sucesso!');
       }
       callback();
     },
@@ -46,6 +48,7 @@ module.exports = function($mdDialog, Vehicle, FleetService, itemId, $scope) {
       if ($ctrl.model.validate() && !$scope.vehicleForm.$invalid) {
         FleetService.upsertVehicle($ctrl.model);
         $mdDialog.cancel();
+        $this.toast.show();
       }
     },
 
