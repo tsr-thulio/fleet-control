@@ -1,0 +1,65 @@
+<md-dialog flex="60">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2 id="addOrEditLabel">{{ vehicle.modalTitle }}</h2>
+      <span flex></span>
+      <md-button id="closeModalButton" class="md-icon-button" ng-click="vehicle.cancel()">
+        <md-icon aria-label="Close dialog">close</md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  
+  <form name="vehicleForm" novalidate ng-submit="vehicle.saveVehicle()">
+    <div>
+      <div class="modal-form-container" layout="row" layout-wrap>
+        <md-input-container class="form-left-side" flex="50" class="md-block">
+          <input md-maxLength="8" maxLength="8" id="inputPlaca" name="placa" ng-model="vehicle.model.placa" ng-required="true" type="text" placeholder="Placa">
+          <div ng-messages="vehicleForm.placa.$error" role="alert">
+            <div ng-message="required">O campo Placa é obrigatório</div>
+          </div>
+        </md-input-container>
+        <md-input-container flex="50" class="md-block">
+          <input id="inputModelo" name="modelo" ng-model="vehicle.model.modelo" ng-required="true" type="text" placeholder="Modelo">
+          <div ng-messages="vehicleForm.modelo.$error" role="alert">
+            <div ng-message="required">O campo Modelo é obrigatório</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="form-left-side" flex="50" class="md-block">
+          <input id="inputMarca" name="marca" ng-model="vehicle.model.marca" ng-required="true" type="text" placeholder="Marca">
+          <div ng-messages="vehicleForm.marca.$error" role="alert">
+            <div ng-message="required">O campo Marca é obrigatório</div>
+          </div>
+        </md-input-container>
+        <md-input-container flex="50" class="md-block">
+          <input id="inputImagem" ng-model="vehicle.model.imagem" type="text" placeholder="Imagem">
+        </md-input-container>
+        <md-input-container class="form-left-side" flex="50" class="md-block">
+          <label>Combustível</label>
+          <md-select id="inputCombustivel" ng-change="vehicle.selectFuel()" ng-model="vehicle.model.combustivel" placeholder="Combustível">
+            <md-option>- Selecione -</md-option>
+            <md-option ng-repeat="fuel in vehicle.fuelList" ng-value="fuel">{{ fuel }}</md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container flex="50" class="md-block">
+          <input name="valor" id="inputValor" ng-model="vehicle.model.valor" type="number" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" placeholder="Valor">
+          <div ng-messages="vehicleForm.valor.$error">
+            <div ng-message="pattern">Valor invalido, utilize o seguinte formato: 123.45</div>
+            <div ng-message="number">Valor invalido, utilize o seguinte formato: 123.45</div>
+          </div>
+        </md-input-container>
+        <h2 class="md-title">Imagem:</h2>
+        <div flex="100" class="img-container" layout="column" layout-align="center center">
+          <img src="{{vehicle.model.imagem}}">
+        </div>
+      </div>
+    </div>
+    
+    <md-divider></md-divider>
+
+    <md-dialog-actions layout="row">
+      <md-button id="cancelAddButton" type="button" ng-click="vehicle.cancel()" class="md-warn">Cancelar</md-button>
+      <md-button id="confirmAddButton" ng-disabled="vehicleForm.$invalid" type="submit" class="md-primary md-raised">Confirmar</md-button>
+    </md-dialog-actions>
+  </form>
+
+</md-dialog>

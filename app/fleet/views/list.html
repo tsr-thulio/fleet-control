@@ -1,3 +1,49 @@
-<div class="container">
-  Here goes content html
+<div class="fleet-container">
+  <div class="crud-actions-container" layout="row" flex layout-align="space-between center">
+    <div class="buttons-container" layout="row" flex="40">
+      <md-input-container class="md-block">
+        <md-button id="addVehicleButton" ng-click="fleet.addCar()" class="md-raised md-accent">Novo Carro</md-button>
+      </md-input-container>    
+      <md-input-container class="md-block">
+        <md-button ng-click="fleet.removeCar()" class="md-raised md-warn">Excluir Carro</md-button>
+      </md-input-container>    
+    </div>
+    <div class="search-container" flex="20" layout="row">
+        <input id="searchInput" placeholder="Pesquisar" type="text" class="form-control" ng-model="fleet.searchText" ng-change="fleet.search()" ng-model-options="{debounce: 500}"/>
+        <span class="input-group-btn">
+          <button id="searchVehicleButton" type="button" class="btn btn-default" ng-click="fleet.search()"><i class="glyphicon glyphicon-search"></i></button>
+        </span>
+    </div>
+  </div>
+
+  <md-table-container>
+  <table md-table md-row-select multiple ng-model="fleet.selectedVehicles" md-progress="promise">
+    <thead md-head>
+      <tr md-row>
+        <th md-column><span>Placa</span></th>
+        <th md-column>Modelo</th>
+        <th md-column>Marca</th>
+        <th md-column>Foto</th>
+        <th md-column>Combustível</th>
+        <th md-column md-numeric>Valor</th>
+      </tr>
+    </thead>
+    <tbody md-body>
+      <tr id="{{'vehicleRow' + $index}}" md-row md-select="vehicle" md-select-id="name" ng-repeat="vehicle in fleet.fleet">
+        <td ng-click="fleet.editVehicle(vehicle.id)" md-cell>{{vehicle.placa}}</td>
+        <td ng-click="fleet.editVehicle(vehicle.id)" md-cell>{{vehicle.modelo}}</td>
+        <td ng-click="fleet.editVehicle(vehicle.id)" md-cell>{{vehicle.marca}}</td>
+        <td ng-click="fleet.editVehicle(vehicle.id, $event)" ng-if="vehicle.imagem" md-cell><a id="vehicle-img" href="{{vehicle.imagem}}" target="_blank">Imagem</a></td>
+        <td ng-click="fleet.editVehicle(vehicle.id)" ng-if="!vehicle.imagem" md-cell>Sem foto</td>
+        <td ng-click="fleet.editVehicle(vehicle.id)" md-cell>{{vehicle.combustivel}}</td>
+        <td ng-click="fleet.editVehicle(vehicle.id)" md-cell>{{vehicle.valor | currency: ''}}</td>
+      </tr>
+    </tbody>
+  </table>
+</md-table-container>
+
+<div layout="row" layout-align="center center">
+  <ul id="paginationElement" uib-pagination total-items="fleet.totalItems" next-text=">>" previous-text="<<" max-size="5" items-per-page="5" ng-model="fleet.currentPage" ng-change="fleet.paginate()"></ul>
+</div>
+
 </div>

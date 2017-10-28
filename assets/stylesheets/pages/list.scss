@@ -1,3 +1,20 @@
-div.container{
-  margin: 25px;
+div.fleet-container{
+  margin: 0px 40px;
+}
+
+.buttons-container {
+  .md-button {
+    min-width: 150px !important;
+  }
+}
+
+.crud-actions-container .search-container {
+  margin-right: 35px;
+  button {
+    background-color: rgb(241,244,249);
+    height: 36px;
+  }
+  input {
+    height: 36px;
+  }
 }
