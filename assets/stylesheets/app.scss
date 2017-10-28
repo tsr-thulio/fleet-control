@@ -8,6 +8,14 @@
 /* Importing custom css for each page */
 @import './pages/pages.scss';
 
+.hide-app {
+  display: none;
+}
+
+.show-app {
+  display: initial !important;
+}
+
 /* angular-material-data-table CSS overrides */
 table.md-table td.md-cell {
   border-top: none;

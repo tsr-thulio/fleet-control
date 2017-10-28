@@ -12,8 +12,8 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <md-content layout-fill layout="column">
-    <md-toolbar ng-controller="AppController as app">
+  <md-content ng-controller="AppController as app" layout-fill layout="column">
+    <md-toolbar class="hide-app" ng-class="{'show-app': app.ready}">
       <div class="md-toolbar-tools">
         <h2 class="toolbar-title" layout="row">
           <img src="https://dcomercio.com.br/files/image/3312/internas_DJ7L7CJQ.png" alt="logo">
