@@ -5,7 +5,7 @@
 var gulp = require('gulp');
 
 gulp.task('watch', require('./tasks/watch'));
-gulp.task('bundle', require('./tasks/bundle'));
+gulp.task('bundle', require('./tasks/bundleTask'));
 gulp.task('sass', require('./tasks/sass'));
 gulp.task('sync', require('./tasks/sync'));
 
