@@ -13,6 +13,5 @@ To run locally, using gulp, follow the steps after opening terminal:
 - Make sure you have NodeJS and Gulp (npm install -g gulp) installed on your machine. I used version 6x and 3x respectively.
 - Run npm install to get all dependencies like AngularJS, Angular Material and so many others.
 - Run gulp. A web browser window/tab should be opened with a localhost. (Preferably, Chrome)
-- The app is already connected to MongoDB through Heroku by default.
 
 Enjoy.
